@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fashionstyle_admin/db/product.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,6 @@ class _AddProductState extends State<AddProduct> {
   List<String> colors = <String>[];
   bool onSale = false;
   bool featured = false;
-
   File _image1;
   bool isLoading = false;
 
@@ -83,7 +83,9 @@ class _AddProductState extends State<AddProduct> {
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: white,
-        leading: Icon(
+        // close//
+        leading:
+        Icon(
           Icons.close,
           color: black,
         ),
@@ -493,7 +495,7 @@ class _AddProductState extends State<AddProduct> {
   }
 
   changeSelectedBrand(String selectedBrand) {
-    setState(() => _currentCategory = selectedBrand);
+    setState(() => _currentBrand = selectedBrand);
   }
 
   void changeSelectedSize(String size) {
@@ -551,9 +553,34 @@ class _AddProductState extends State<AddProduct> {
 
 
           task1.onComplete.then((snapshot3) async {
-            imageUrl1 = await snapshot1.ref.getDownloadURL();
+            List<String> imageUrl1 = [];
+            imageUrl1.add(await snapshot1.ref.getDownloadURL());
 
-            productService.uploadProduct({
+
+            productService.uploadProduct(
+              productName: productNameController.text,
+              price: double.parse(priceController.text),
+              sizes: selectedSizes,
+              images:imageUrl1,
+              quantity: int.parse(quatityController.text));
+            _formKey.currentState.reset();
+            setState(() => isLoading = false);
+               Fluttertoast.showToast(msg: 'Product added');
+                Navigator.pop(context);
+          });
+        } else {
+          setState(() => isLoading = false);
+          Fluttertoast.showToast(msg: 'Select atleat one size');
+        }
+      } else {
+        setState(() => isLoading = false);
+        Fluttertoast.showToast(msg: 'all the images must be provided');
+      }
+    }
+  }
+}
+/*
+ productService.uploadProduct({
               "name":productNameController.text,
               "price":double.parse(priceController.text),
               "sizes":selectedSizes,
@@ -564,19 +591,4 @@ class _AddProductState extends State<AddProduct> {
               "category":_currentCategory,
               'sale':onSale,
               'featured':featured
-            });
-            _formKey.currentState.reset();
-            setState(() => isLoading = false);
-            Navigator.pop(context);
-          });
-        } else {
-          setState(() => isLoading = false);
-        }
-      } else {
-        setState(() => isLoading = false);
-
-//        Fluttertoast.showToast(msg: 'all the images must be provided');
-      }
-    }
-  }
-}
+            });*/
