@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:fashionstyle_admin/providers/app_states.dart';
 import 'package:fashionstyle_admin/widgets/small_card.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -331,4 +331,4 @@ class Task {
   Color colorval;
 
   Task(this.task, this.taskvalue, this.colorval);
-}*/
+}

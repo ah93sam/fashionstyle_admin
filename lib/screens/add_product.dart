@@ -85,10 +85,13 @@ class _AddProductState extends State<AddProduct> {
         backgroundColor: white,
         // close//
         leading:
-        Icon(
-          Icons.close,
-          color: black,
+        IconButton(
+          icon: Icon(Icons.close,color: black),
+          onPressed: (){Navigator.pop(context);},
+          //Icons.close,
+          //color: black,
         ),
+
         title: Text(
           "add product",
           style: TextStyle(color: black),
@@ -565,8 +568,10 @@ class _AddProductState extends State<AddProduct> {
               quantity: int.parse(quatityController.text));
             _formKey.currentState.reset();
             setState(() => isLoading = false);
-               Fluttertoast.showToast(msg: 'Product added');
-                Navigator.pop(context);
+          //  final snackBar = SnackBar(content: Text('Produt add'));
+          //  Scaffold.of(context).showSnackBar(snackBar);
+              Fluttertoast.showToast(msg: 'Product added');
+              Navigator.pop(context);
           });
         } else {
           setState(() => isLoading = false);

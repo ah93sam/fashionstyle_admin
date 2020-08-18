@@ -197,12 +197,15 @@ class _AdminState extends State<Admin> {
                     context, MaterialPageRoute(builder: (_) => AddProduct()));
               },
             ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.change_history),
-              title: Text("Products list"),
-              onTap: () {},
-            ),
+            //Divider(),
+            //ListTile(
+              //leading: Icon(Icons.change_history),
+              //title: Text("Products list"),
+              //onTap: () {
+               // _categoryService;
+               // Navigator.push(context, _categoryAlert());
+             // },
+           // ),
             Divider(),
             ListTile(
               leading: Icon(Icons.add_circle),
@@ -213,14 +216,14 @@ class _AdminState extends State<Admin> {
 
               },
             ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.category),
-              title: Text("Category list"),
-              onTap: () {
+            //Divider(),
+            //ListTile(
+              //leading: Icon(Icons.category),
+              //title: Text("Category list"),
+              //onTap: () {
                 //_categoryService.getCategories();
-              },
-            ),
+              //},
+            //),
             Divider(),
             ListTile(
               leading: Icon(Icons.add_circle_outline),
@@ -229,14 +232,14 @@ class _AdminState extends State<Admin> {
                 _brandAlert();
               },
             ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.library_books),
-              title: Text("brand list"),
-              onTap: () {
-                _brandService.getBrands();
-              },
-            ),
+            //Divider(),
+            //ListTile(
+              //leading: Icon(Icons.library_books),
+              //title: Text("brand list"),
+              //onTap: () {
+                //_brandService.getBrands();
+              //},
+            //),
             Divider(),
           ],
         );
